@@ -1,0 +1,5 @@
+Flask==0.12.2
+Flask-RESTful==0.3.6
+requests
+jaeger-client==3.9.0
+Flask-OpenTracing==0.2.0

@@ -24,17 +24,19 @@ Browse to `http://localhost:8080` to check out Traefik's web interface
 4. Run the app in two separate consoles on two separate ports (this simulates two different microservices):
 ```
 #Console 1 (run microservice1 on port 20000):
-cd app && python3 app.py 20000 microservice1
+cd app
+FLASK_APP_NAME=microservice1 python3 runserver.py 20000
 
 
 #Console 2 (run microservice2 on port 20001):
-cd app && python3 app.py 20001 microservice2
+cd app
+FLASK_APP_NAME=microservice2 python3 runserver.py 20001
 ```
 
-5. At this point, we can test out everything. This request to `service1` will make `service1` invoke `service2` so we can test that distributed tracing works:   
-`curl http://localhost:9000/service1/customer`   
+5. At this point, we can test out everything.   
+`curl http://localhost:19000/service1/customers`   
 Refresh the jaeger query web ui to see the produced traces
 
-6. To see in-app instrumentation, browse to the following url:
-`curl http://localhost:9000/service1/orders`   
-Refresh the jaeger query web ui to see the produced traces
+6. The following endpoints have the necessary plumbing wired up to enable "real" distributed tracing:
+`curl http://localhost:19000/service1/orders`   
+Refresh the jaeger query web ui to see the produced traces, noticed that this time we get a continous trace, from the traefik load balancer, thru `microservice1` and all the way to `microservice2`.
