@@ -2,6 +2,10 @@
 
 Code and config for a blogpost that I wrote
 
+### Prerequisites
+You need:
+- Docker
+- Python3 with pip
 
 ### How to run
 1. Run the jaeger opentracing all-in-one thingy. This sets up a local in-memory collector, agent and query instance:
@@ -23,6 +27,9 @@ Browse to `http://localhost:8080` to check out Traefik's web interface
 
 4. Run the app in two separate consoles on two separate ports (this simulates two different microservices):
 ```
+#First, install prerequisites (one-time things)
+pip3 install -r app/requirements.txt
+
 #Console 1 (run microservice1 on port 20000):
 cd app
 FLASK_APP_NAME=microservice1 python3 runserver.py 20000
