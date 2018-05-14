@@ -1,0 +1,49 @@
+checkNewVersion = false
+logLevel = "DEBUG"
+
+defaultEntryPoints = ["http"]
+[entryPoints]
+    [entryPoints.http]
+    address = ":19000"
+
+    [entryPoints.dashboard]
+    address = ":8080"
+
+[api]
+    entryPoint = "dashboard"
+    dashboard = true
+
+[metrics]
+    [metrics.statistics]
+    recentErrors = 10
+
+[file]
+[backends]
+  [backends.microservice1]
+    [backends.microservice1.servers]
+      [backends.microservice1.servers.server0]
+        url = "http://127.0.0.1:20000"
+  [backends.microservice2]
+    [backends.microservice2.servers]
+      [backends.microservice2.servers.server0]
+        url = "http://127.0.0.1:20001"
+
+[frontends]
+  [frontends.microservice1]
+    entryPoints = ["http"]
+    backend = "microservice1"
+    [frontends.microservice1.routes]
+      [frontends.microservice1.routes.route0]
+        rule = "PathPrefixStrip: /service1"
+
+  [frontends.microservice2]
+    entryPoints = ["http"]
+    backend = "microservice2"
+    [frontends.microservice2.routes]
+      [frontends.microservice2.routes.route0]
+        rule = "PathPrefixStrip: /service2"
+
+
+[tracing]
+  backend = "jaeger"
+  serviceName = "traefik"
