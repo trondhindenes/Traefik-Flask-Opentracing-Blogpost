@@ -1,6 +1,9 @@
 # Traefik/Flask/Opentracing
 
-Code and config for a blogpost that I wrote at https://medium.com/@trondhindenes/exploring-distributed-tracing-using-traefik-jaeger-and-flask-4f1835c8ed8d
+Code and config for a blogpost that I wrote at 
+https://medium.com/jaegertracing/exploring-distributed-tracing-using-traefik-jaeger-and-flask-4f1835c8ed8d
+(and personcal copy at)
+https://medium.com/@trondhindenes/exploring-distributed-tracing-using-traefik-jaeger-and-flask-4f1835c8ed8d
 
 ### Prerequisites
 You need:
